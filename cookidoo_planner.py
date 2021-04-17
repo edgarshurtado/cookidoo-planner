@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 driver = webdriver.Chrome("./chromedriver")
+paella_url = 'https://cookidoo.es/recipes/recipe/es-ES/r121101'
 
 
 def login():
@@ -20,15 +21,20 @@ def login():
 
     print('login as {}'.format(os.environ.get('user')))
 
+def add_recipe_to_shopping_list(recipe_url):
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
 
-login(driver)
-driver.close()
+    driver.get(recipe_url)
+    add_button = driver.find_element_by_id('add-trigger-r121101')
+    add_button.click()
 
-html = driver.page_source
-# soup = BeautifulSoup(html, 'html.parser')
-# title = soup.find('h1', attrs={'class': 'recipe-card__title'}).text
-#
-# ingredients = [ingredient.text for ingredient in soup.find(attrs={'id': 'ingredients'}).find_all('li')]
-# ingredients = list(map(lambda x: ' '.join(x.split()), ingredients))
-#
-# print(title, ingredients)
+    add_to_list_button = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "[data-action='Add to shopping list']"))
+    )
+    add_to_list_button.click()
+
+
+login()
+add_recipe_to_shopping_list(paella_url)
