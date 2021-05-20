@@ -1,8 +1,9 @@
+import re
+
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import re
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class Recipe:
@@ -24,6 +25,15 @@ class Recipe:
             EC.presence_of_element_located((By.CSS_SELECTOR, "[data-action='Add to shopping list']"))
         )
         add_to_list_button.click()
+
+    def has_ingredient(self, ingredient):
+        return any([recipe_ingredient for recipe_ingredient in self.ingredients if
+                    ingredient.lower() in recipe_ingredient.lower()])
+
+    def ingredients_satisfied(self, ingredients):
+        ingredients_satisfied = [ingredient for ingredient in ingredients if self.has_ingredient(ingredient)]
+        return ingredients_satisfied
+
 
 
 def get_all_recipes(driver, url):
