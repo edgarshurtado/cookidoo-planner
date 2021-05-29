@@ -9,6 +9,7 @@ meals_list_url = 'https://cookidoo.es/organize/es-ES/my-recipes'
 dinners_list_url = 'https://cookidoo.es/organize/es-ES/custom-list/01F4PXQKYQ0W4X0WT6Q8PB0J7M'
 
 
+
 def login():
     page_url = 'https://cookidoo.es/profile/es-ES/login?redirectAfterLogin=https://cookidoo.es/foundation/es-ES'
 
@@ -29,7 +30,6 @@ key_ingredients = input('Ingredients to prioritize: ')
 key_ingredients = list(map(lambda x: x.strip(), key_ingredients.split(',')))
 print(key_ingredients)
 
-
 driver = webdriver.Chrome("./chromedriver")
 login()
 
@@ -38,8 +38,7 @@ my_dinners = get_all_recipes(driver, dinners_list_url)
 
 selected_recipes = []
 
-
-week_days = ['martes', 'jueves', 'sábado']
+week_days = ['jueves']
 
 while len(selected_recipes) < len(week_days):
     meal_candidate_idx, dinner_candidate_idx = (random.randrange(len(my_meals)), random.randrange(len(my_dinners)))
@@ -68,7 +67,6 @@ while len(selected_recipes) < len(week_days):
     dinner.add_to_shopping_list(driver)
 
     selected_recipes.append((meal, dinner))
-
 
 template_meal = '{:>12} ☀️ {}'
 template_dinner = '{:>12}️ 🌚 {}'

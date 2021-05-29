@@ -35,6 +35,10 @@ class Recipe:
         return ingredients_satisfied
 
 
+def recipe_has_ingredient(recipe, ingredient):
+    return any([recipe_ingredient for recipe_ingredient in recipe.ingredients if
+                ingredient.lower() in recipe_ingredient.lower()])
+
 
 def get_all_recipes(driver, url):
     driver.get(url)
