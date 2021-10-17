@@ -63,10 +63,13 @@ class CookidooScrapper:
         return result
 
     def scroll_to_the_end(self):
+        def get_scroll_height():
+            return self.driver.execute_script("return document.body.scrollHeight")
+
         SCROLL_PAUSE_TIME = 0.5
 
         # Get scroll height
-        last_height = self.driver.execute_script("return document.body.scrollHeight")
+        last_height = get_scroll_height()
 
         while True:
             # Scroll down to bottom
@@ -76,7 +79,7 @@ class CookidooScrapper:
             time.sleep(SCROLL_PAUSE_TIME)
 
             # Calculate new scroll height and compare with last scroll height
-            new_height = self.driver.execute_script("return document.body.scrollHeight")
+            new_height = get_scroll_height()
             if new_height == last_height:
                 break
             last_height = new_height
