@@ -1,7 +1,7 @@
 import random
 
 
-def create_menu(week_days, my_meals, my_dinners, ingredients) -> list[tuple]:
+def create_menu(week_days, my_meals, my_dinners, ingredients=[]) -> list[tuple]:
     selected_recipes = []
     no_selected_meals_idx_list = [idx for idx, _ in enumerate(my_meals)]
     no_selected_dinners_idx_list = [idx for idx, _ in enumerate(my_dinners)]

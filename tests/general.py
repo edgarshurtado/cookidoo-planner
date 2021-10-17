@@ -7,15 +7,15 @@ from recipes import Recipe, recipe_has_ingredient
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
        self.my_meals = [
-           Recipe('', 'Raviolis con salsa de berenjena', ['berenjenas', 'raviolis', 'parmesano']),
-           Recipe('', 'Puré de calabaza', ['calabaza', 'nata']),
-           Recipe('', 'Arroz a la cubana', ['arroz', 'huevo', 'tomate frito']),
-           Recipe('', 'Paella', ['arroz', 'conejo', 'pimientos']),
+           Recipe('', 'Raviolis con salsa de berenjena', 'meal',['berenjenas', 'raviolis', 'parmesano']),
+           Recipe('', 'Puré de calabaza', 'meal', ['calabaza', 'nata']),
+           Recipe('', 'Arroz a la cubana', 'meal', ['arroz', 'huevo', 'tomate frito']),
+           Recipe('', 'Paella', 'meal', ['arroz', 'conejo', 'pimientos']),
        ]
        self.my_dinners = [
-           Recipe('', 'Ensalada de piña', ['lechuga', 'jamón york', 'piña']),
-           Recipe('', 'Sopa de fideos', ['caldo de pollo', 'fideos', '4 huevos']),
-           Recipe('', 'Tortilla de patatas', ['huevos', 'patatas', 'cebolla']),
+           Recipe('', 'Ensalada de piña', 'meal', ['lechuga', 'jamón york', 'piña']),
+           Recipe('', 'Sopa de fideos', 'meal', ['caldo de pollo', 'fideos', '4 huevos']),
+           Recipe('', 'Tortilla de patatas', 'meal', ['huevos', 'patatas', 'cebolla']),
        ]
 
     def test_creates_menu_plan(self):
@@ -33,12 +33,12 @@ class MyTestCase(unittest.TestCase):
         ingredients_list = ['pollo']
 
         my_meals = [
-            Recipe('', 'Puré de calabaza', ['calabaza', 'nata']),
-            Recipe('', 'Arroz a la cubana', ['arroz', 'huevo', 'tomate frito']),
+            Recipe('', 'Puré de calabaza', 'meal', ['calabaza', 'nata']),
+            Recipe('', 'Arroz a la cubana', 'meal', ['arroz', 'huevo', 'tomate frito']),
         ]
         my_dinners = [
-            Recipe('', 'Ensalada de piña', ['lechuga', 'jamón york', 'piña']),
-            Recipe('', 'Tortilla de patatas', ['huevos', 'patatas', 'cebolla']),
+            Recipe('', 'Ensalada de piña', 'meal', ['lechuga', 'jamón york', 'piña']),
+            Recipe('', 'Tortilla de patatas', 'meal', ['huevos', 'patatas', 'cebolla']),
         ]
         result = create_menu(week_days=days, my_meals=my_meals, my_dinners=my_dinners,
                              ingredients=ingredients_list)
