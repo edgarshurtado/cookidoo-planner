@@ -82,8 +82,8 @@ class CookidooScrapper:
             last_height = new_height
 
     def add_recipe_to_shopping_list(self, recipe: Recipe):
-        recipe_id = self.url.split('/')[-1]
-        self.driver.get(self.url)
+        recipe_id = recipe.url.split('/')[-1]
+        self.driver.get(recipe.url)
         add_button = self.driver.find_element_by_id(f'add-trigger-{recipe_id}')
         add_button.click()
 
