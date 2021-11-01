@@ -16,9 +16,6 @@ class CookidooScrapper:
     def __init__(self):
         self.driver = webdriver.Chrome("./chromedriver")
 
-    def __del__(self):
-        self.driver.close()
-
     def login(self):
         page_url = 'https://cookidoo.es/profile/es-ES/login?redirectAfterLogin=https://cookidoo.es/foundation/es-ES'
 
