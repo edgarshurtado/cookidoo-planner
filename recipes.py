@@ -6,6 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class Recipe:
+    class RecipeType:
+        MEAL = 'meal',
+        DINNER = 'DINNER'
+
     def __init__(self, url, name, list, ingredients):
         self.url = url
         self.name = name
