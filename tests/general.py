@@ -4,10 +4,10 @@ from domain import create_menu
 from recipes import Recipe, recipe_has_ingredient
 
 
-class MyTestCase(unittest.TestCase):
+class PlannerTests(unittest.TestCase):
     def setUp(self) -> None:
        self.my_meals = [
-           Recipe('', 'Raviolis con salsa de berenjena', 'meal',['berenjenas', 'raviolis', 'parmesano']),
+           Recipe('', 'Raviolis con salsa de berenjena', 'meal', ['berenjenas', 'raviolis', 'parmesano']),
            Recipe('', 'Puré de calabaza', 'meal', ['calabaza', 'nata']),
            Recipe('', 'Arroz a la cubana', 'meal', ['arroz', 'huevo', 'tomate frito']),
            Recipe('', 'Paella', 'meal', ['arroz', 'conejo', 'pimientos']),
@@ -18,10 +18,12 @@ class MyTestCase(unittest.TestCase):
            Recipe('', 'Tortilla de patatas', 'meal', ['huevos', 'patatas', 'cebolla']),
        ]
 
-    def test_creates_menu_plan(self):
+    def test_picks_2_recipes_for_each_selected_day(self):
         days = ['jueves', 'sábado']
         result = create_menu(week_days=days, my_meals=self.my_meals, my_dinners=self.my_dinners)
         self.assertEqual(len(result), 2)
+        self.assertEqual(len(result[0]), 2)
+        self.assertEqual(len(result[1]), 2)
 
     def test_do_not_fail_if_not_enough_recipes(self):
         days = ['jueves', 'sábado', 'lunes', 'miércoles']
