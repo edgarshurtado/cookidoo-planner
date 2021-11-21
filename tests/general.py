@@ -83,7 +83,3 @@ class PlannerTests(unittest.TestCase):
 
         for ingredient in ingredients_list:
             self.assertTrue(any([recipe for recipe in recipes_selected if recipe_has_ingredient(recipe, ingredient)]))
-
-
-if __name__ == '__main__':
-    unittest.main()
