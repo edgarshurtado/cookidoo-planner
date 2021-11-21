@@ -24,11 +24,10 @@ def create_menu(week_days, my_meals: [Recipe], my_dinners: [Recipe], ingredients
         meal, dinner = (my_meals[no_selected_meals_idx_list.pop(meal_candidate_idx)],
                         my_dinners[no_selected_dinners_idx_list.pop(dinner_candidate_idx)])
 
-        candidate_recipe_ingredients = meal.ingredients + dinner.ingredients
         if len(ingredients_left_to_satisfy) == 0:
             selected_recipes.append((meal, dinner))
         else:
-            satisfied_ingredients = set(meal.ingredients_satisfied(candidate_recipe_ingredients) + dinner.ingredients_satisfied(candidate_recipe_ingredients))
+            satisfied_ingredients = set(meal.ingredients_satisfied(ingredients_left_to_satisfy) + dinner.ingredients_satisfied(ingredients_left_to_satisfy))
             if len(satisfied_ingredients) > 0:
                 ingredients_left_to_satisfy -= satisfied_ingredients
                 selected_recipes.append((meal, dinner))

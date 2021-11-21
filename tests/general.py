@@ -72,9 +72,21 @@ class PlannerTests(unittest.TestCase):
         self.assertEqual(len(result), 0)
 
     def test_uses_given_ingredients_at_least_in_one_recipe(self):
-        days = ['jueves', 'sábado']
+        my_meals = [
+            Recipe('', 'Raviolis con salsa de berenjena', Recipe.RecipeType.MEAL, ['berenjenas', 'raviolis', 'parmesano']),
+            Recipe('', 'Puré de calabaza', Recipe.RecipeType.MEAL, ['calabaza', 'nata']),
+            Recipe('', 'Arroz a la cubana', Recipe.RecipeType.MEAL, ['arroz', '4 huevos', 'tomate frito']),
+            Recipe('', 'Paella', Recipe.RecipeType.MEAL, ['arroz', 'conejo', 'pimientos']),
+        ]
+        my_dinners = [
+            Recipe('', 'Ensalada de piña', Recipe.RecipeType.DINNER, ['lechuga', 'jamón york', 'piña']),
+            Recipe('', 'Sopa de fideos', Recipe.RecipeType.DINNER, ['caldo de pollo', 'fideos']),
+            Recipe('', 'Tortilla de patatas', Recipe.RecipeType.DINNER, ['huevos', 'patatas', 'cebolla']),
+        ]
+
+        days = [Weekdays.MONDAY, Weekdays.TUESDAY]
         ingredients_list = ['pollo', 'huevo']
-        result = create_menu(week_days=days, my_meals=self.my_meals, my_dinners=self.my_dinners,
+        result = create_menu(week_days=days, my_meals=my_meals, my_dinners=my_dinners,
                              ingredients=ingredients_list)
 
         recipes_selected = []
