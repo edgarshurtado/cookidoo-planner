@@ -6,18 +6,6 @@ from constants import Weekdays
 
 
 class PlannerTests(unittest.TestCase):
-    def setUp(self) -> None:
-       self.my_meals = [
-           Recipe('', 'Raviolis con salsa de berenjena', Recipe.RecipeType.MEAL, ['berenjenas', 'raviolis', 'parmesano']),
-           Recipe('', 'Puré de calabaza', Recipe.RecipeType.MEAL, ['calabaza', 'nata']),
-           Recipe('', 'Arroz a la cubana', Recipe.RecipeType.MEAL, ['arroz', 'huevo', 'tomate frito']),
-           Recipe('', 'Paella', Recipe.RecipeType.MEAL, ['arroz', 'conejo', 'pimientos']),
-       ]
-       self.my_dinners = [
-           Recipe('', 'Ensalada de piña', Recipe.RecipeType.DINNER, ['lechuga', 'jamón york', 'piña']),
-           Recipe('', 'Sopa de fideos', Recipe.RecipeType.DINNER, ['caldo de pollo', 'fideos', '4 huevos']),
-           Recipe('', 'Tortilla de patatas', Recipe.RecipeType.DINNER, ['huevos', 'patatas', 'cebolla']),
-       ]
 
     def test_picks_1_meal_and_1_dinner_for_each_selected_day(self):
         my_meals = [
