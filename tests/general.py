@@ -53,8 +53,7 @@ class MyTestCase(unittest.TestCase):
 
         recipes_selected = []
         for meal, dinner in result:
-            recipes_selected.append(meal)
-            recipes_selected.append(dinner)
+            recipes_selected += [meal, dinner]
 
         for ingredient in ingredients_list:
             self.assertTrue(any([recipe for recipe in recipes_selected if recipe_has_ingredient(recipe, ingredient)]))
