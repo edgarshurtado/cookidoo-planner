@@ -2,6 +2,7 @@ import unittest
 
 from domain import create_menu
 from recipes import Recipe, recipe_has_ingredient
+from constants import Weekdays
 
 
 class PlannerTests(unittest.TestCase):
@@ -19,14 +20,14 @@ class PlannerTests(unittest.TestCase):
        ]
 
     def test_picks_2_recipes_for_each_selected_day(self):
-        days = ['jueves', 'sábado']
+        days = [Weekdays.SATURDAY, Weekdays.SUNDAY]
         result = create_menu(week_days=days, my_meals=self.my_meals, my_dinners=self.my_dinners)
         self.assertEqual(len(result), 2)
         self.assertEqual(len(result[0]), 2)
         self.assertEqual(len(result[1]), 2)
 
     def test_do_not_fail_if_not_enough_recipes(self):
-        days = ['jueves', 'sábado', 'lunes', 'miércoles']
+        days = [Weekdays.MONDAY, Weekdays.TUESDAY, Weekdays.WEDNESDAY, Weekdays.THURSDAY, Weekdays.FRIDAY]
         result = create_menu(week_days=days, my_meals=self.my_meals, my_dinners=self.my_dinners)
         self.assertEqual(len(result), 3)  # 3 because we have only 3 dinner recipes
 
